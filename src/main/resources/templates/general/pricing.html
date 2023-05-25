@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gettup</title>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//use.fontawesome.com/releases/v5.7.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+      integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/4c5657348f.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      table {
+        border: 2px solid lightgray !important;
+        border-radius: 25px !important;
+      }
+
+      td {
+        position: relative;
+      }
+
+      .table tbody .hover {
+        background: #d9d9d9;
+        font-weight: 500;
+      }
+
+      .table tbody .hover:after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        height: 105%;
+        border-left: 3px solid lightgray;
+        border-right: 3px solid lightgray;
+      }
+
+      /* Рамка снизу у последней ячейки */
+      .table tbody tr:last-child .hover:after {
+        border-bottom: 3px solid lightgray;
+        height: auto;
+      }
+
+      .bi-caret-left-fill,
+      .bi-caret-right-fill {
+        font-size: 34px;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $(".table th, .table td").hover(
+          function () {
+            var t = parseInt($(this).index()) + 1;
+            $("td:nth-child(" + t + ")").addClass("hover");
+          },
+          function () {
+            var t = parseInt($(this).index()) + 1;
+            $("td:nth-child(" + t + ")").removeClass("hover");
+          }
+        );
+      });
+
+      $("#reduce").addEventListener("click", function () {
+        $("#basicPrice").fadeOut(1000, function () {
+          $(this).text("7000").fadeIn(1000);
+        });
+
+        $("#proPrice").fadeOut(1000, function () {
+          $(this).text("14000").fadeIn(1000);
+        });
+
+        $("#businessPrice").fadeOut(1000, function () {
+          $(this).text("55000").fadeIn(1000);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="nav-container">
+      <div th:replace="~{fragments/navbar :: navbar}"></div>
+    </div>
+
+    <div class="contentC">
+      <div class="content" style="width: 100%">
+        <div
+          class="text-center"
+          style="width: 100%; margin-top: 20px; margin-bottom: 35px"
+        >
+          <h2><strong>Pricing</strong></h2>
+        </div>
+        <div class="sideCards">
+          <div class="time-shift">
+            <i class="bi bi-caret-left-fill"></i>
+          </div>
+          <div class="card tariff side-left" style="padding-right: 200px">
+            <div class="tName">
+              <strong style="font-size: 20px">Basic</strong>
+            </div>
+
+            <div class="tCost">
+              <strong>
+                <span style="font-size: 46px">
+                  <span style="vertical-align: top; font-size: 20px">₸</span>
+                  <span id="basicPrice">10 000</span>
+                </span>
+                <sub id="basicTime">/month</sub>
+              </strong>
+            </div>
+
+            <div class="tDescription mb-3">For individuals and small teams</div>
+
+            <div class="tBtn">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                style="width: 100%; border-radius: 10px"
+              >
+                Get started with Basic
+              </button>
+            </div>
+          </div>
+          <div class="card tariff side-right" style="padding-left: 200px">
+            <div class="tName">
+              <strong style="font-size: 20px">Business</strong>
+            </div>
+
+            <div class="tCost">
+              <strong>
+                <span style="font-size: 46px">
+                  <span style="vertical-align: top; font-size: 20px">₸</span>
+                  <span id="businessPrice">80 000</span>
+                </span>
+                <sub id="businessTime">/month</sub>
+              </strong>
+            </div>
+
+            <div class="tDescription mb-3">
+              For organizations with advanced needs
+            </div>
+
+            <div class="tBtn">
+              <button
+                type="button"
+                class="btn btn-outline-dark"
+                style="width: 100%; border-radius: 10px"
+              >
+                Get started with Business
+              </button>
+            </div>
+          </div>
+          <div class="time-shift">
+            <i class="bi bi-caret-right-fill"></i>
+          </div>
+        </div>
+        <div class="midCard">
+          <div class="card tariff mid">
+            <div
+              class="tName"
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <strong style="font-size: 20px">Pro</strong>
+              <div
+                style="width: fit-content; font-size: 12px; border-radius: 10px"
+                class="badge bg-warning text-wrap fw-bold"
+              >
+                popular
+              </div>
+            </div>
+
+            <div class="tCost mt-2">
+              <strong>
+                <span style="font-size: 46px">
+                  <span style="vertical-align: top; font-size: 20px">₸</span>
+                  <span id="proPrice">35 000</span>
+                </span>
+                <sub id="proTime">/month</sub>
+              </strong>
+            </div>
+
+            <div class="tDescription mb-3">
+              For startups and growing <br />
+              businesses
+            </div>
+
+            <div class="tBtn">
+              <button type="button" class="btn btn-primary" style="width: 100%">
+                Get started with Pro
+              </button>
+            </div>
+          </div>
+          <h5 class="fw-bold">or</h5>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            style="width: 85%; border-radius: 10px"
+          >
+            Get started with Starter for free
+          </button>
+        </div>
+      </div>
+
+      <div class="content text-center">
+        <div class="text-center">
+          <h3><strong>Compare features</strong></h3>
+        </div>
+
+        <table
+          class="table table-lg text-center table-bordered mt-5 rounded"
+          aria-describedby=""
+        >
+          <thead>
+            <tr class="feature-row" style="background-color: #d9d9d9">
+              <th class="col-2 feature-header" scope="col"></th>
+              <th class="col-3 feature-header" scope="col">Basic</th>
+              <th class="col-3 feature-header" scope="col">Pro</th>
+              <th class="col-3 feature-header" scope="col">Business</th>
+            </tr>
+          </thead>
+          <tbody
+            class="table-group-divider"
+            style="border-top-color: lightgray"
+          >
+            <tr class="feature-row">
+              <th scope="row">Course creation</th>
+              <td>Max 2 courses</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr class="feature-row">
+              <th scope="row">Technical support</th>
+              <td><i class="fa-solid fa-square-check"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+            </tr>
+            <tr class="feature-row">
+              <th scope="row">
+                Knowledge <br />
+                check quizes
+              </th>
+              <td><i class="fa-solid fa-square-minus"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+            </tr>
+            <tr class="feature-row">
+              <th scope="row">
+                Homework <br />
+                with feedback
+              </th>
+              <td><i class="fa-solid fa-square-minus"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+            </tr>
+            <tr class="feature-row">
+              <th scope="row">Own brand</th>
+              <td><i class="fa-solid fa-square-minus"></i></td>
+              <td><i class="fa-solid fa-square-minus"></i></td>
+              <td><i class="fa-solid fa-square-check"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="footer-container">
+      <div th:replace="~{fragments/navbar :: footer}"></div>
+    </div>
+  </body>
+</html>

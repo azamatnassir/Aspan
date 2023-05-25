@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var flag = /*[[${error}]]*/ 'default';
+        window.onload = function () {
+            if (flag != null) {
+                iziToast.error({
+                    title: flag,
+                    message: '',
+                    timeout: 3000,
+                    animateInside: false,
+                    transitionIn: 'fadeInDown',
+                    transitionOut: 'fadeOutUp',
+                    position: 'topCenter',
+                    color: 'red'
+                });
+            }
+        };
+
+        /*]]>*/
+    </script>
+</head>
+<body>
+
+<div class="registerCard">
+    <div class="registerContainer">
+
+        <h2 style="margin: 45px 0 20px;"><b>Registration</b></h2>
+
+        <form autocomplete="off" method="post" novalidate th:action="@{/register}">
+            <div class="input-group mb-0 formInput">
+                <input autocomplete="off" class="form-control" id="inputFirstName" name="firstName"
+                       placeholder="First name"
+                       required style="font-weight: bold;" th:name="firstName"
+                       type="text">
+            </div>
+            <div class="input-group mb-0 formInput">
+                <input autocomplete="off" class="form-control" id="inputLastName"
+                       placeholder="Last name"
+                       required style="font-weight: bold;"
+                       th:name="lastName"
+                       type="text">
+            </div>
+            <div class="input-group mb-0 formInput">
+                <input autocomplete="false" class="form-control" id="inputEmail"
+                       placeholder="Email"
+                       required style="font-weight: bold;" th:name="email" type="email">
+            </div>
+            <div class="input-group mb-0 formInput">
+                <input autocomplete="new-password" class="form-control" id="inputPassword1"
+                       name="password" placeholder="Password"
+                       required style="font-weight: bold;" th:name="password" type="password">
+            </div>
+            <div class="input-group mb-5 formInput">
+                <input autocomplete="false" class="form-control"
+                       id="inputPassword2" placeholder="Confirm"
+                       required style="font-weight: bold;"
+                       th:name="confirm" type="password">
+            </div>
+
+            <div class="formButton">
+                <input class="btn btn-primary" style="width: 90%;" type="submit" value="Sign up">
+            </div>
+            <div class="input-group formReset" style="justify-content: center;">
+                <a id="register" style="margin-top: 5px; font-size: 14px; color: black;" th:href="@{/login}">Already
+                    have an account? <strong>Sign in</strong></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

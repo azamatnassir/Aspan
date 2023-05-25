@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Gettup</title>
+    <link rel="stylesheet" th:href="@{../static//css/style.css}"/>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+</head>
+<body>
+<div class="nav-container">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+</div>
+
+<div class="contentC">
+    <div class="cover">
+        <div class="row justify-content-evenly" style="margin-bottom: 15px">
+            <div
+                    class="col-6 text-center"
+                    style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-content: center;
+            "
+            >
+                <div class="row mb-5 justify-content-center">
+                    <div class="col-6">
+                        <p
+                                style="font-size: 80px; font-weight: bold; text-align: start"
+                        >
+                            GETTUP
+                        </p>
+                        <p style="font-size: 18px">
+                            Online <strong>platform</strong> for your online school
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center align-items-end">
+                    <div class="col-6">
+                        <p style="text-align: start; margin-top: 10px">
+                            <a
+                                    class="btn btn-primary"
+                                    style="margin-right: 20px"
+                                    th:href="@{../static/register}"
+                            >Try for free</a
+                            >
+                            <a
+                                    class="btn btn-outline-dark"
+                                    style="border-radius: 15px"
+                                    th:href="@{../static/features}"
+                            >See how it works</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <img alt="" style="width: 75%" th:src="@{../static//img/landing.png}"/>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="content">
+        <div
+                class="card landcard"
+                style="z-index: 1; background-color: #ffffff"
+        >
+            <div class="row d-flex align-items-center" style="padding: 0 35px;">
+                <div class="col-6 text-center">
+                    <img alt="" style="width: 75%" th:src="@{../static//img/landing.png}"/>
+                </div>
+
+                <div class="col-1"></div>
+
+                <div class="col-5 text-end">
+                    <p style="font-size: 20px"><strong>Some very nice headline</strong></p>
+                    <p>Here you can put a short description providing more context for the headline</p>
+                    <a
+                            class="btn btn-primary"
+                            th:href="@{../static//register}"
+                    >Try for free</a>
+                </div>
+            </div>
+        </div>
+        <div class="card landcard overlay"></div>
+    </div>
+
+    <br/>
+
+    <div class="content">
+
+    </div>
+
+    <br/>
+
+    <div class="content">
+        <div
+                class="card landcard"
+                style="z-index: 1; background-color: #ffffff; height: 80%"
+        ></div>
+        <div class="card landcard overlay" style="height: 80%"></div>
+    </div>
+</div>
+
+<div class="footer-container">
+    <div th:replace="~{fragments/navbar :: footer}"></div>
+</div>
+</body>
+</html>

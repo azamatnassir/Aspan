@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Gettup</title>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+    <style>
+        .form-control{
+            border: 1px solid #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-container" sec:authorize="!isAuthenticated()">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+</div>
+
+<div class="nav-container" sec:authorize="hasRole('ROLE_STUDENT')">
+    <div th:replace="~{fragments/navbar.html :: studentNavbar}"></div>
+</div>
+
+<div class="nav-container" sec:authorize="hasRole('ROLE_CREATOR')">
+    <div th:replace="~{fragments/navbar.html :: creatorNavbar}"></div>
+</div>
+
+<div class="contentС">
+    <div class="cover">
+        <div class="row justify-content-evenly" style="margin-bottom: 15px;">
+            <div class="col-6 d-flex justify-content-end">
+                <img alt="" style="width: 100%" th:src="@{/img/support.png}">
+            </div>
+            <div class="col-6 d-flex justify-content-start"
+                 style="display: flex; flex-direction: column; justify-content: center; align-content: center;">
+
+                <div class="row mb-5 justify-content-end" style="width: 100%;">
+                    <div class="col-10">
+                        <p style="font-size: 40px; font-weight: bold; text-align: start; margin-bottom: 0;">Contact
+                            us</p>
+                        <p style="font-size: 16px;">Feel free to get in touch</p>
+
+                        <form autocomplete="off" method="post" novalidate th:action="@{/contact}">
+                            <div class="mb-3">
+                                <div sec:authorize="!isAuthenticated()">
+                                    <input class="form-control" name="name"
+                                           placeholder="Full name" required
+                                           th:name="name" type="text">
+                                </div>
+
+                                <div sec:authorize="hasAnyRole('ROLE_STUDENT', 'ROLE_CREATOR')">
+                                    <input class="form-control" name="name"
+                                           placeholder="Full name" required
+                                           th:name="name" th:value="${#authentication.getPrincipal().getFullName()}"
+                                           type="text">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control" name="phone" placeholder="Phone number"
+                                       required th:name="phone" type="number">
+                            </div>
+                            <div class="input-group mb-3">
+                                <textarea class="form-control" name="message"
+                                          placeholder="Message" required rows="4" style="resize: none;"
+                                          th:name="message"></textarea>
+                            </div>
+
+                            <div class="formButton">
+                                <input class="btn btn-primary" style="border-radius: 15px; width: 100%;" type="submit"
+                                       value="Send">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div sec:authorize="!isAuthenticated()">
+        </div>
+
+        <div sec:authorize="hasRole('ROLE_STUDENT')">
+        </div>
+
+        <div sec:authorize="hasRole('ROLE_CREATOR')">
+        </div>
+    </div>
+</div>
+
+<div class="footer-container">
+    <div th:replace="~{fragments/navbar :: footer}"></div>
+</div>
+</body>
+</html>

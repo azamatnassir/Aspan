@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <title>Aspan: The best platform for online education</title>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{../static/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{../static/css/fontawesome-all.min.css}"/>
+    <link rel="stylesheet" th:href="@{../static/css/swiper.css}"/>
+    <link rel="stylesheet" th:href="@{../static/css/styles.css}"/>
+    <link rel="icon" th:href="@{../static/img/logo.png}"/>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarExample">
+<!-- Navigation -->
+<div th:replace="~{fragments/navbar.html :: navbar}"></div>
+
+<img alt="gradient1" id="gradientItem1" th:src="@{../static/img/gradient1.png}"/>
+
+<img alt="gradient1" id="gradientBlue1" th:src="@{../static/img/blue1.png}"/>
+
+<img alt="gradient1" id="gradientPink1" th:src="@{../static/img/pink1.png}"/>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    <h1 class="h1-large">
+                        The best platform <br/>for online education
+                    </h1>
+                    <p class="p-large">
+                        A modern distance e-learning management system, that allows you
+                        to organize multi-format training.
+                    </p>
+                    <a class="btn-solid-lg joinBtn" th:href="@{/register}"
+                    >Join for free</a
+                    >
+                    <a class="btn-outline-lg learnBtn" href="#features">Learn more</a>
+                </div>
+                <!-- end of text-container -->
+            </div>
+            <!-- end of col -->
+            <div class="col-lg-6">
+                <img
+                        alt="alternative"
+                        class="img-fluid"
+                        onContextMenu="return false;"
+                        th:src="@{../static/img/raketa3.png}"
+                />
+            </div>
+            <!-- end of col -->
+        </div>
+        <!-- end of row -->
+    </div>
+    <!-- end of container -->
+</header>
+<!-- end of header -->
+
+<img
+        alt="gradient1"
+        id="gradientItem2"
+        onContextMenu="return false;"
+        th:src="@{../static/img/polushar.png}"
+/>
+
+<!-- end of header -->
+
+<img
+        alt="saturn"
+        id="saturn"
+        onContextMenu="return false;"
+        th:src="@{../static/img/saturn.png}"
+/>
+
+<img
+        alt="gradient2"
+        id="gradient2"
+        onContextMenu="return false;"
+        th:src="@{../static/img/gradient2.png}"
+/>
+
+<img
+        alt="gradient1"
+        id="gradientBlue2"
+        onContextMenu="return false;"
+        th:src="@{../static/img/blue2.png}"
+/>
+
+<div class="container vh-100">
+    <div class="banner mx-auto text-center">
+        <div class="row h-50 justify-content-center text-center">
+            <div class="col-lg-10 align-self-center">
+                <p class="qstn align-middle">
+                    Have you been looking for a convenient platform for your course or
+                    online school for a long time?
+                </p>
+            </div>
+        </div>
+        <div class="row h-50 justify-content-center text-center">
+            <div class="col-lg-8 d-flex align-items-start flex-column">
+                <p class="answr">
+                    Our "Aspan" e-learning system provides you with the following
+                    advantages
+                </p>
+                <a class="btn-solid-lg mt-auto mx-auto m-5" href="#features"
+                >Learn more</a
+                >
+            </div>
+        </div>
+    </div>
+</div>
+
+<img
+        alt="spiral"
+        id="spiral"
+        onContextMenu="return false;"
+        th:src="@{../static/img/spiral.png}"
+/>
+
+<img
+        alt="koleco"
+        id="koleco"
+        onContextMenu="return false;"
+        th:src="@{../static/img/koleco.png}"
+/>
+
+<img
+        alt="kapsula"
+        id="kapsula"
+        onContextMenu="return false;"
+        th:src="@{../static/img/kapsula.png}"
+/>
+
+<img
+        alt="gradient1"
+        id="gradientPink2"
+        onContextMenu="return false;"
+        th:src="@{../static/img/pink2.png}"
+/>
+
+<div class="container py-4 d-flex flex-column" id="features">
+    <div class="row justify-content-around featureRow">
+        <div class="col-lg-3 featureCard p-2 text-center">
+            <div class="row h-50 mx-4 mt-3 mb-2">
+                <img
+                        alt="feature icon1"
+                        class="mx-auto my-auto"
+                        onContextMenu="return false;"
+                        th:src="@{../static/img/comp.png}"
+                />
+            </div>
+            <p>
+                Have you been looking for a convenient platform for your course or
+                online school for a long time?
+            </p>
+        </div>
+        <div class="col-lg-3 featureCard p-2 text-center">
+            <div class="row h-50 mx-4 mt-3 mb-2">
+                <img
+                        alt="feature icon2"
+                        class="mx-auto my-auto"
+                        onContextMenu="return false;"
+                        th:src="@{../static/img/ball.png}"
+                />
+            </div>
+            <p>
+                Have you been looking for a convenient platform for your course or
+                online school for a long time?
+            </p>
+        </div>
+        <div class="col-lg-3 featureCard p-2 text-center">
+            <div class="row h-50 mx-4 mt-3 mb-2">
+                <img
+                        alt="feature icon3"
+                        class="mx-auto my-auto"
+                        onContextMenu="return false;"
+                        th:src="@{../static/img/play.png}"
+                />
+            </div>
+            <p>
+                Have you been looking for a convenient platform for your course or
+                online school for a long time?
+            </p>
+        </div>
+    </div>
+    <div class="row vh-10 justify-content-around mt-5">
+        <div class="col-lg-12 d-flex align-items-start flex-column">
+            <a class="btn-solid-lg mx-auto" href="#your-link">Join for free</a>
+        </div>
+    </div>
+</div>
+
+<img
+        alt="gradient1"
+        id="gradientItem3"
+        onContextMenu="return false;"
+        th:src="@{../static/img/polushar.png}"
+/>
+
+<img
+        alt="balls"
+        id="balls"
+        onContextMenu="return false;"
+        th:src="@{../static/img/balls.png}"
+/>
+
+<img
+        alt="gradient3"
+        id="gradient3"
+        onContextMenu="return false;"
+        th:src="@{../static/img/gradient3.png}"
+/>
+
+<img
+        alt="gradient1"
+        id="gradientBlue3"
+        onContextMenu="return false;"
+        th:src="@{../static/img/blue3.png}"
+/>
+
+<div
+        class="carousel slide py-5 mb-5"
+        data-bs-ride="carousel"
+        id="carouselExampleAutoplaying"
+>
+    <div class="carousel-inner mb-5">
+        <div class="carousel-item active" data-bs-interval="3500">
+            <div class="priceCard mx-auto text-center p-4">
+                <div class="row h-100">
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <img
+                                alt="basic"
+                                class="w-100"
+                                onContextMenu="return false;"
+                                th:src="@{../static/img/basic.png}"
+                        />
+                    </div>
+                    <div
+                            class="col-lg-7 d-flex justify-content-evenly flex-column p-4"
+                    >
+                        <p class="tariffName">BASIC</p>
+                        <table
+                                class="table table-borderless mx-5 text-start text-white tariffFeatures"
+                        >
+                            <thead></thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="lightning"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/lightning.svg}"
+                                    />
+                                </th>
+                                <td>Course creation - Max 2 courses</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="check"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Technical support</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/x.svg}"
+                                    />
+                                </th>
+                                <td>Knowledge check quizes</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/x.svg}"
+                                    />
+                                </th>
+                                <td>Homework with feedback</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/x.svg}"
+                                    />
+                                </th>
+                                <td>Own brand</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="tariffPrice">10 000 tg / month</p>
+                        <a
+                                class="btn-solid-lg mt-auto mx-auto tariffBtn"
+                                href="#your-link"
+                        >Get started with BASIC</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3500">
+            <div class="priceCard mx-auto text-center p-4">
+                <div class="row h-100">
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <img
+                                alt="basic"
+                                class="w-100"
+                                onContextMenu="return false;"
+                                th:src="@{../static/img/pro.png}"
+                        />
+                    </div>
+                    <div
+                            class="col-lg-7 d-flex justify-content-evenly flex-column p-4"
+                    >
+                        <p class="tariffName">PRO</p>
+                        <table
+                                class="table table-borderless mx-5 text-start text-white tariffFeatures"
+                        >
+                            <thead></thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="lightning"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/lightning.svg}"
+                                    />
+                                </th>
+                                <td>Course creation - Unlimited</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="check"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Technical support</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Knowledge check quizes</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Homework with feedback</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/x.svg}"
+                                    />
+                                </th>
+                                <td>Own brand</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="tariffPrice">35 000 tg / month</p>
+                        <a
+                                class="btn-solid-lg mt-auto mx-auto tariffBtn"
+                                href="#your-link"
+                        >Get started with PRO</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3500">
+            <div class="priceCard mx-auto text-center p-4">
+                <div class="row h-100">
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <img
+                                alt="basic"
+                                class="w-100"
+                                onContextMenu="return false;"
+                                th:src="@{../static/img/business.png}"
+                        />
+                    </div>
+                    <div
+                            class="col-lg-7 d-flex justify-content-evenly flex-column p-4"
+                    >
+                        <p class="tariffName">BUSINESS</p>
+                        <table
+                                class="table table-borderless mx-5 text-start text-white tariffFeatures"
+                        >
+                            <thead></thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="lightning"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/lightning.svg}"
+                                    />
+                                </th>
+                                <td>Course creation - Unlimited</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="check"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Technical support</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Knowledge check quizes</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Homework with feedback</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <img
+                                            alt="►"
+                                            class="x"
+                                            onContextMenu="return false;"
+                                            th:src="@{../static/img/check.svg}"
+                                    />
+                                </th>
+                                <td>Own brand</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p class="tariffPrice">80 000 tg / month</p>
+                        <a
+                                class="btn-solid-lg mt-auto mx-auto tariffBtn"
+                                href="#your-link"
+                        >Get started with BUSINESS</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button
+            class="carousel-control-prev"
+            data-bs-slide="prev"
+            data-bs-target="#carouselExampleAutoplaying"
+            type="button"
+    >
+        <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+            class="carousel-control-next"
+            data-bs-slide="next"
+            data-bs-target="#carouselExampleAutoplaying"
+            type="button"
+    >
+        <span aria-hidden="true" class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Back To Top Button -->
+<button id="myBtn" onclick="topFunction()">
+    <img alt="↑" onContextMenu="return false;" th:src="@{../static/img/up.svg}"/>
+</button>
+<!-- end of back to top button -->
+
+<div th:replace="~{fragments/navbar :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE >
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <title>Gettup</title>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+    <style>
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .courseCard:hover {
+            -moz-transform: scale(0.97);
+            -ms-transform: scale(0.97);
+            -webkit-transform: scale(0.97);
+            -o-transform: scale(0.97);
+            transform: scale(0.97);
+            opacity: 90%;
+            cursor: pointer;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .coll {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
+    <script>
+        /*<![CDATA[*/
+
+        var flag = /*[[${message}]]*/ "default";
+        window.onload = function () {
+            if (flag === "exists") {
+                iziToast.error({
+                    title: "Course already exists",
+                    message: "",
+                    timeout: 3000,
+                    animateInside: false,
+                    transitionIn: "fadeInDown",
+                    transitionOut: "fadeOutUp",
+                    position: "topCenter",
+                });
+            } else if (flag === "success") {
+                iziToast.success({
+                    title: "Successfully added",
+                    message: "",
+                    timeout: 3000,
+                    animateInside: false,
+                    transitionIn: "fadeInDown",
+                    transitionOut: "fadeOutUp",
+                    position: "topCenter",
+                });
+            }
+        };
+
+        /*]]>*/
+
+        function openCourse(courseId) {
+            document.getElementById("course" + courseId).submit();
+        }
+    </script>
+</head>
+<body>
+
+<div class="nav-container" sec:authorize="hasRole('ROLE_STUDENT')">
+    <div th:replace="~{fragments/navbar.html :: studentNavbar}"></div>
+</div>
+
+<div class="nav-container" sec:authorize="hasRole('ROLE_CREATOR')">
+    <div th:replace="~{fragments/navbar.html :: creatorNavbar}"></div>
+</div>
+
+<header class="header" id="header">
+    <div class="container">
+        <div sec:authorize="hasRole('ROLE_STUDENT')">
+            <div class="row" style="margin-bottom: 10px; margin-top: 20px">
+                <div class="col-6">
+                    <h3>My courses</h3>
+                </div>
+            </div>
+
+            <div class="row w-100 mb-5 mx-0" style="margin-bottom: 10px; display: table">
+                <div class="col-6 coll px-0">
+                    <div class="input-group input-group-sm">
+                        <input aria-describedby="button-addon1" aria-label="Course name" class="form-control"
+                               placeholder="Course name" style="
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                  " type="text"/>
+                        <button class="btn btn-dark" id="button-addon1" style="
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    z-index: 0;
+                  " type="button">
+                            SEARCH
+                        </button>
+                    </div>
+                </div>
+                <div class="col-6 coll px-0"></div>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(courses)}">
+                <div class="row courseRow">
+                    <div class="col-lg-4" th:each="course : ${courses}">
+                        <div
+                                class="card courseCard text-center"
+                                th:onclick="openCourse([[${course.id}]])"
+                        >
+                            <img
+                                    alt="Course avatar"
+                                    class="card-img-top"
+                                    height="160rem"
+                                    src=""
+                                    th:src="@{'data:image/jpeg;base64,'+${course.generateBase64Image()}}"
+                            />
+                            <br/>
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${course.getName()}"></h5>
+                                <p
+                                        class="card-text description"
+                                        th:text="${course.getDescription()}"
+                                ></p>
+                                <form
+                                        method="post"
+                                        style="margin-bottom: 0"
+                                        th:action="@{/course}"
+                                        th:attr="id='course'+${course.id}"
+                                >
+                                    <input
+                                            th:name="courseId"
+                                            th:value="${course.getId()}"
+                                            type="hidden"
+                                    />
+                                    <input
+                                            class="btn btn-primary course-btn"
+                                            hidden
+                                            style="width: 100%; bottom: 0"
+                                            type="submit"
+                                            value="Open"
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div sec:authorize="hasRole('ROLE_CREATOR')">
+            <div class="row" style="margin-bottom: 10px; margin-top: 20px">
+                <div class="col-6">
+                    <h3>My courses</h3>
+                </div>
+            </div>
+
+            <div
+                    class="row w-100 mb-5 mx-0"
+                    style="margin-bottom: 10px; display: table"
+            >
+                <div class="col-6 coll px-0">
+                    <div class="input-group input-group-sm">
+                        <input
+                                aria-describedby="button-addon2"
+                                aria-label="Course name"
+                                class="form-control"
+                                placeholder="Course name"
+                                style="
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                  "
+                                type="text"
+                        />
+                        <button
+                                class="btn btn-dark"
+                                id="button-addon2"
+                                style="
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    z-index: 0;
+                  "
+                                type="button"
+                        >
+                            SEARCH
+                        </button>
+                    </div>
+                </div>
+                <div class="col-6 coll px-0">
+                    <a
+                            class="btn btn-outline-dark btn-sm"
+                            style="float: right"
+                            th:href="@{/create/course}"
+                    >ADD COURSE</a
+                    >
+                </div>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(courses)}">
+                <div class="row courseRow">
+                    <div class="col-lg-4" th:each="course : ${courses}">
+                        <div
+                                class="card courseCard text-center"
+                                th:onclick="openCourse([[${course.id}]])"
+                        >
+                            <img
+                                    alt="Course avatar"
+                                    class="card-img-top"
+                                    height="160rem"
+                                    src=""
+                                    th:src="@{'data:image/jpeg;base64,'+${course.generateBase64Image()}}"
+                            />
+                            <br/>
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${course.getName()}"></h5>
+                                <p
+                                        class="card-text description"
+                                        th:text="${course.getDescription()}"
+                                ></p>
+                                <form
+                                        method="post"
+                                        style="margin-bottom: 0"
+                                        th:action="@{/course}"
+                                        th:attr="id='course'+${course.id}"
+                                >
+                                    <input
+                                            th:name="courseId"
+                                            th:value="${course.getId()}"
+                                            type="hidden"
+                                    />
+                                    <input
+                                            class="btn btn-primary course-btn"
+                                            hidden
+                                            style="width: 100%; bottom: 0"
+                                            type="submit"
+                                            value="Open"
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(courses)}">
+            <h5 class="no-courses">Courses not added yet</h5>
+        </div>
+    </div>
+</header>
+
+<!--<div class="contentC">-->
+<!--    <div class="courses">-->
+<!--        <div sec:authorize="hasRole('ROLE_STUDENT')">-->
+<!--            <div class="row" style="margin-bottom: 10px; margin-top: 20px">-->
+<!--                <div class="col-6">-->
+<!--                    <h3>My courses</h3>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div-->
+<!--                    class="row w-100 mb-5 mx-0"-->
+<!--                    style="margin-bottom: 10px; display: table"-->
+<!--            >-->
+<!--                <div class="col-6 coll px-0">-->
+<!--                    <div class="input-group input-group-sm">-->
+<!--                        <input-->
+<!--                                aria-describedby="button-addon1"-->
+<!--                                aria-label="Course name"-->
+<!--                                class="form-control"-->
+<!--                                placeholder="Course name"-->
+<!--                                style="-->
+<!--                    border-top-left-radius: 10px;-->
+<!--                    border-bottom-left-radius: 10px;-->
+<!--                  "-->
+<!--                                type="text"-->
+<!--                        />-->
+<!--                        <button-->
+<!--                                class="btn btn-dark"-->
+<!--                                id="button-addon1"-->
+<!--                                style="-->
+<!--                    border-top-right-radius: 10px;-->
+<!--                    border-bottom-right-radius: 10px;-->
+<!--                    z-index: 0;-->
+<!--                  "-->
+<!--                                type="button"-->
+<!--                        >-->
+<!--                            SEARCH-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-6 coll px-0"></div>-->
+<!--            </div>-->
+
+<!--            <div th:if="${not #lists.isEmpty(courses)}">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-4" th:each="course : ${courses}">-->
+<!--                        <div-->
+<!--                                class="card courseCard text-center"-->
+<!--                                th:onclick="openCourse([[${course.id}]])"-->
+<!--                        >-->
+<!--                            <img-->
+<!--                                    alt="Course avatar"-->
+<!--                                    class="card-img-top"-->
+<!--                                    height="160rem"-->
+<!--                                    src=""-->
+<!--                                    th:src="@{'data:image/jpeg;base64,'+${course.generateBase64Image()}}"-->
+<!--                            />-->
+<!--                            <br/>-->
+<!--                            <div class="card-body">-->
+<!--                                <h5 class="card-title" th:text="${course.getName()}"></h5>-->
+<!--                                <p-->
+<!--                                        class="card-text description"-->
+<!--                                        th:text="${course.getDescription()}"-->
+<!--                                ></p>-->
+<!--                                <form-->
+<!--                                        method="post"-->
+<!--                                        style="margin-bottom: 0"-->
+<!--                                        th:action="@{/course}"-->
+<!--                                        th:attr="id='course'+${course.id}"-->
+<!--                                >-->
+<!--                                    <input-->
+<!--                                            th:name="courseId"-->
+<!--                                            th:value="${course.getId()}"-->
+<!--                                            type="hidden"-->
+<!--                                    />-->
+<!--                                    <input-->
+<!--                                            class="btn btn-primary course-btn"-->
+<!--                                            hidden-->
+<!--                                            style="width: 100%; bottom: 0"-->
+<!--                                            type="submit"-->
+<!--                                            value="Open"-->
+<!--                                    />-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div sec:authorize="hasRole('ROLE_CREATOR')">-->
+<!--            <div class="row" style="margin-bottom: 10px; margin-top: 20px">-->
+<!--                <div class="col-6">-->
+<!--                    <h3>My courses</h3>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div-->
+<!--                    class="row w-100 mb-5 mx-0"-->
+<!--                    style="margin-bottom: 10px; display: table"-->
+<!--            >-->
+<!--                <div class="col-6 coll px-0">-->
+<!--                    <div class="input-group input-group-sm">-->
+<!--                        <input-->
+<!--                                aria-describedby="button-addon2"-->
+<!--                                aria-label="Course name"-->
+<!--                                class="form-control"-->
+<!--                                placeholder="Course name"-->
+<!--                                style="-->
+<!--                    border-top-left-radius: 10px;-->
+<!--                    border-bottom-left-radius: 10px;-->
+<!--                  "-->
+<!--                                type="text"-->
+<!--                        />-->
+<!--                        <button-->
+<!--                                class="btn btn-dark"-->
+<!--                                id="button-addon2"-->
+<!--                                style="-->
+<!--                    border-top-right-radius: 10px;-->
+<!--                    border-bottom-right-radius: 10px;-->
+<!--                    z-index: 0;-->
+<!--                  "-->
+<!--                                type="button"-->
+<!--                        >-->
+<!--                            SEARCH-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-6 coll px-0">-->
+<!--                    <a-->
+<!--                            class="btn btn-outline-dark btn-sm"-->
+<!--                            style="float: right"-->
+<!--                            th:href="@{/create/course}"-->
+<!--                    >ADD COURSE</a-->
+<!--                    >-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div th:if="${not #lists.isEmpty(courses)}">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-4" th:each="course : ${courses}">-->
+<!--                        <div-->
+<!--                                class="card courseCard text-center"-->
+<!--                                th:onclick="openCourse([[${course.id}]])"-->
+<!--                        >-->
+<!--                            <img-->
+<!--                                    alt="Course avatar"-->
+<!--                                    class="card-img-top"-->
+<!--                                    height="160rem"-->
+<!--                                    src=""-->
+<!--                                    th:src="@{'data:image/jpeg;base64,'+${course.generateBase64Image()}}"-->
+<!--                            />-->
+<!--                            <br/>-->
+<!--                            <div class="card-body">-->
+<!--                                <h5 class="card-title" th:text="${course.getName()}"></h5>-->
+<!--                                <p-->
+<!--                                        class="card-text description"-->
+<!--                                        th:text="${course.getDescription()}"-->
+<!--                                ></p>-->
+<!--                                <form-->
+<!--                                        method="post"-->
+<!--                                        style="margin-bottom: 0"-->
+<!--                                        th:action="@{/course}"-->
+<!--                                        th:attr="id='course'+${course.id}"-->
+<!--                                >-->
+<!--                                    <input-->
+<!--                                            th:name="courseId"-->
+<!--                                            th:value="${course.getId()}"-->
+<!--                                            type="hidden"-->
+<!--                                    />-->
+<!--                                    <input-->
+<!--                                            class="btn btn-primary course-btn"-->
+<!--                                            hidden-->
+<!--                                            style="width: 100%; bottom: 0"-->
+<!--                                            type="submit"-->
+<!--                                            value="Open"-->
+<!--                                    />-->
+<!--                                </form>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div th:if="${#lists.isEmpty(courses)}">-->
+<!--            <h5 class="no-courses">Courses not added yet</h5>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div th:replace="~{fragments/navbar :: footer}"></div>
+</body>
+</html>

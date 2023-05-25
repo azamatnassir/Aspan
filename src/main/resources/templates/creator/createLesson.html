@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gettup</title>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+    <script>
+        $(document).ready(function () {
+
+            var readURL = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.lesson-files').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $(".file-upload").on('change', function () {
+                readURL(this);
+            });
+
+            $(".avatar-wrapper, .lesson-files").on('click', function () {
+                $(".file-upload").click();
+            });
+        });
+    </script>
+    <style>
+        .avatar-wrapper {
+            position: relative;
+            background-color: white;
+            border-radius: 15px;
+            border: 1px solid gray;
+            width: 350px;
+            height: 250px;
+        }
+
+        .lesson-files {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        /* The icon inside the overlay is positioned in the middle vertically and horizontally */
+        .icon {
+            color: black;
+            font-size: 80px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        /* When you move the mouse over the icon, change color */
+        .bi-images:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-container">
+    <div th:replace="~{fragments/navbar.html :: creatorNavbar}"></div>
+</div>
+
+<div class="contentC">
+    <div class="courses">
+        <br>
+        <h3>Add lesson</h3>
+        <br>
+
+        <form enctype="multipart/form-data" method="post" th:action="@{/add/lesson}">
+            <div class="row">
+                <div class="col-5">
+                    <p>Lesson materials (one or more files)</p>
+                    <div class="avatar-wrapper">
+                        <img class="lesson-files" src=""/>
+<!--                        <div class="overlay">-->
+<!--                            <a class="icon">-->
+<!--                                <i class="bi bi-images"></i>-->
+<!--                            </a>-->
+<!--                        </div>-->
+                        <input accept="image/*" hidden class="file-upload" id="formFile" multiple th:name="materials"
+                               type="file"/>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlInput1">Lesson title</label>
+                                <input class="form-control" id="exampleFormControlInput1" placeholder="Enter title"
+                                       th:name="title"
+                                       type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="exampleFormControlTextarea1">Lesson's textual
+                                    data</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                          style="resize: none;"
+                                          th:name="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <input style="float: right" th:name="courseId" th:value="${course_id}" type="hidden">
+                                <input class="btn btn-outline-dark" style="float: right" type="submit" value="SAVE">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="footer-container">
+    <div th:replace="~{fragments/navbar :: footer}"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+    <title>Dashboard</title>
+    <div th:replace="~{fragments/headerFragment :: header}"></div>
+    <script>
+        /*<![CDATA[*/
+
+        var flag = /*[[${message}]]*/ "default";
+        window.onload = function () {
+            if (flag === "exists") {
+                iziToast.error({
+                    title: "Course already exists",
+                    message: "",
+                    timeout: 3000,
+                    animateInside: false,
+                    transitionIn: "fadeInDown",
+                    transitionOut: "fadeOutUp",
+                    position: "topCenter",
+                });
+            } else if (flag === "success") {
+                iziToast.success({
+                    title: "Successfully added",
+                    message: "",
+                    timeout: 3000,
+                    animateInside: false,
+                    transitionIn: "fadeInDown",
+                    transitionOut: "fadeOutUp",
+                    position: "topCenter",
+                });
+            }
+        };
+
+        /*]]>*/
+
+        function addCourse() {
+            document.getElementById("addCourseBtn").click();
+        }
+
+        function openCourse(courseId) {
+            document.getElementById("course" + courseId).submit();
+        }
+    </script>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarExample">
+
+<div sec:authorize="hasRole('ROLE_STUDENT')">
+    <div th:replace="~{fragments/navbar.html :: studentNavbar}"></div>
+</div>
+
+<div sec:authorize="hasRole('ROLE_CREATOR')">
+    <div th:replace="~{fragments/navbar.html :: creatorNavbar}"></div>
+</div>
+
+<img alt="gradient1" id="pinkHome1" th:src="@{../static/img/pink1Home.png}"/>
+
+<header class="header" id="header">
+    <div class="container">
+        <div class="row justify-content-start mt-5 mb-2">
+            <div class="col-4 text-start">
+                <h1 class="courseTopText">My courses</h1>
+            </div>
+        </div>
+
+        <div class="row w-100 justify-content-start mb-5">
+            <div class="col-4 text-start">
+                <input class="form-control courseSearchBox" placeholder="Course name" type="text">
+            </div>
+            <div class="col-8 text-start">
+                <button class="btn-outline-lg courseSearchBtn" type="button">SEARCH</button>
+            </div>
+        </div>
+
+        <div class="row w-100 courseRow row-cols-3 mt-5">
+            <div class="col-lg-4">
+                <div class="card courseCard text-center" style="cursor:pointer;" th:onclick="addCourse()">
+                    <div class="card-body">
+                        <img alt="Course avatar" class="courseIcon" style="background-color: transparent;"
+                             th:src="@{../static/img/add.png}"/>
+                        <br>
+                        <h5 class="courseTitle p-2">ADD COURSE</h5>
+                    </div>
+                    <a class="btn btn-outline-dark btn-sm" hidden id="addCourseBtn" th:href="@{/create/course}"></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4" th:each="course : ${courses}">
+                <div class="card courseCard text-center" th:onclick="openCourse([[${course.id}]])">
+                    <div class="card-body">
+                        <img alt="Course avatar" class="courseIcon"
+                             th:src="@{'data:image/jpeg;base64,'+${course.generateBase64Image()}}"/>
+                        <br>
+                        <h5 class="courseTitle p-2" th:text="${course.getName()}"></h5>
+                        <form method="post" style="margin-bottom: 0" th:action="@{/course}"
+                              th:attr="id='course'+${course.id}">
+                            <input th:name="courseId" th:value="${course.getId()}" type="hidden"/>
+                            <input class="btn btn-primary course-btn" hidden style="width: 100%; bottom: 0"
+                                   type="submit" value="Open"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div th:replace="~{fragments/navbar :: footer}"></div>
+</body>
+</html>
